@@ -6,7 +6,8 @@ const configurationVariables = {
     JWT_SECRET_KEY: process.env.JWT_SECRET_KEY,
     API_KEY: process.env.API_KEY,
     API_PASSWORD_READ: process.env.API_PASSWORD_READ,
-    API_PASSWORD_WRITE: process.env.API_PASSWORD_WRITE
+    API_PASSWORD_WRITE: process.env.API_PASSWORD_WRITE,
+    BACKEND_HOST_URL: process.env.BACKEND_HOST_URL
 }
 
 module.exports = configurationVariables;

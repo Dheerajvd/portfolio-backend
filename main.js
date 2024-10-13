@@ -1,11 +1,16 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 const errorHandler = require("./src/middlewares/error-handler");
 const { connectDb } = require("./src/config/db.config");
 const cors = require("cors");
 const configurationVariables = require('./src/config/env.config');
 
-app.use(cors());
+app.use(cors({
+    origin: '*', // Allow all origins (consider limiting this in production)
+    methods: ['GET', 'POST'], // Allow specific methods
+    allowedHeaders: ['Content-Type', 'Authorization', 'api_key', 'api_password'] // Allow specific headers
+}));
 
 // db connection
 connectDb();

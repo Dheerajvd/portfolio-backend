@@ -33,7 +33,11 @@ const landingSchema = mongoose.Schema(
                 type: String,
                 required: [true, "Please enter WhatsApp link"]
             }
-        }
+        },
+        about: {
+            type: String,
+            required: [true, "Please enter about"]
+        },
     },
     { timestamps: true }
 );

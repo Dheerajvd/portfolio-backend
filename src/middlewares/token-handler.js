@@ -13,6 +13,7 @@ const validateToken = asyncHandler(async (req, res, next) => {
                     statusCode: 401,
                     statusMessage: "Token entered may have expired"
                 });
+                return 
             }
             req.user = decoded ? decoded.user : {};
             next();

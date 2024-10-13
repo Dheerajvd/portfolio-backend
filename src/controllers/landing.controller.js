@@ -17,7 +17,8 @@ const handleGetLanding = asyncHandler(async (req, res) => {
     if (landingPageDetails) {
         const landingPage = {
             ui: landingPageDetails.ui,
-            links: landingPageDetails.links
+            links: landingPageDetails.links,
+            about: landingPageDetails.about
         };
         res.status(200).json({
             statusCode: 200,
@@ -37,9 +38,9 @@ const handleGetLanding = asyncHandler(async (req, res) => {
 // @access: Private
 // @request-body: {username: dalabanjandheeraj ,ui: {title: "This is a title", role: "Role to display"}, {links: {insta: "", linkedin:"", medium: "", whatsapp: ""}}}
 const createLandingPageData = asyncHandler(async (req, res) => {
-    const { ui, links } = req.body;
+    const { ui, links, about } = req.body;
     const username = req.user.username
-    if (!ui || !links || !username) {
+    if (!ui || !links || !about ||!username) {
         res.status(400).json({
             statusCode: 400,
             statusMessage: "Bad Request"
@@ -65,6 +66,7 @@ const createLandingPageData = asyncHandler(async (req, res) => {
         const landingDetails = await Landing.create({
             username,
             links,
+            about,
             ui
         });
 
@@ -73,6 +75,7 @@ const createLandingPageData = asyncHandler(async (req, res) => {
                 username: landingDetails.username,
                 ui: landingDetails.ui,
                 links: landingDetails.links,
+                about: landingDetails.about,
                 id: landingDetails._id
             };
 
@@ -96,9 +99,9 @@ const createLandingPageData = asyncHandler(async (req, res) => {
 // @request-body: {username: dalabanjandheeraj ,ui: {title: "This is a title", role: "Role to display"}, {links: {insta: "", linkedin:"", medium: "", whatsapp: ""}}}
 const updateLandingPageData = asyncHandler(async (req, res) => {
     let id = req.params.id;
-    const { ui, links } = req.body;
+    const { ui, links, about } = req.body;
     const username = req.user.username
-    if (!ui || !links || !username, !id) {
+    if (!ui || !links || !about ||!username, !id) {
         res.status(400).json({
             statusCode: 400,
             statusMessage: "Bad Request"
