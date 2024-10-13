@@ -60,7 +60,7 @@
                 "points": [
                     "seperated by commas"
                 ],
-                "tech_stack": ""
+                "techStack": ""
             },
             "apis": {
                 "get": "api/projects/getprojects ---> To get exp list",

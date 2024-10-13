@@ -26,6 +26,7 @@ app.use("/api/landing", require("./src/routes/landing.routes"));
 app.use("/api/skills", require("./src/routes/skills.routes"));
 app.use("/api/experiences", require("./src/routes/experience.routes"));
 app.use("/api/testimonials", require("./src/routes/testimonial.routes"));
+app.use("/api/projects", require("./src/routes/projects.routes"));
 app.use("/api/common", require("./src/routes/common.routes"));
 
 const PORT = configurationVariables.PORT || 3000;
