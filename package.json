@@ -1,0 +1,35 @@
+{
+  "name": "portfolio-backend",
+  "version": "1.0.1",
+  "description": "This is a repository for the backend of your node application",
+  "main": "main.js",
+  "scripts": {
+    "dev": "nodemon main.js",
+    "start": "node main.js",
+    "test": "null"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dheerajvd/portfolio-backend.git"
+  },
+  "keywords": [
+    "Backend"
+  ],
+  "author": "Dheeraj V Dalabanjan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dheerajvd/portfolio-backend/issues"
+  },
+  "homepage": "https://github.com/Dheerajvd/portfolio-backend#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.7.1"
+  }
+}

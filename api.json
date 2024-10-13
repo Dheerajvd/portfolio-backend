@@ -1,0 +1,92 @@
+{
+    "pages": {
+        "landing": {
+            "profileImagePath": "store in frontend",
+            "ui": {
+                "title": "I'm Dheeraj",
+                "role": "A Mean stack developer"
+            },
+            "links": {
+                "insta": "link to insta",
+                "medium": "link to medium",
+                "linkedin": "link to medium",
+                "Whatsapp": "link to Whatsapp"
+            },
+            "about": {
+                "about_content": "hsavs"
+            },
+            "apis": {
+                "get": "api/landing/getDetails ---> To get links, ui object and about",
+                "update": "api/landing/update ---> To update links, ui object and about"
+            }
+        },
+        "skills": {
+            "skills_set": [
+                {
+                    "title": "HTML",
+                    "image": "link to static server"
+                },
+                {
+                    "title": "add other skills in above format"
+                }
+            ],
+            "apis": {
+                "get": "api/skills/getSkills ---> To get skiils list",
+                "update": "api/skills/update ---> To update links, ui object and about"
+            }
+        },
+        "experience": {
+            "exper": [
+                {
+                    "date_of_join": "Jan 2022",
+                    "company": "",
+                    "location": "",
+                    "description": [
+                        "seperated by commas for ul>li"
+                    ]
+                }
+            ],
+            "apis": {
+                "get": "api/experience/getexperience ---> To get exp list",
+                "add": "api/experience/addexperience ---> create new experience document",
+                "update": "api/experience/update ---> To update experience",
+                "delete": "api/experience/delete"
+            }
+        },
+        "projects": {
+            "listofprojects": {
+                "category": "MEAN | DESIGN",
+                "title": "",
+                "points": [
+                    "seperated by commas"
+                ],
+                "tech_stack": ""
+            },
+            "apis": {
+                "get": "api/projects/getprojects ---> To get exp list",
+                "add": "api/projects/addprojects ---> create new projects document",
+                "update": "api/projects/update ---> To update projects",
+                "delete": "api/projects/delete"
+            }
+        },
+        "testimonials": {
+            "list": [
+                {
+                    "content": "",
+                    "given_by": "",
+                    "image_path": ""
+                }
+            ],
+            "apis": {
+                "get": "api/testimonials/gettestimonials ---> To get exp list",
+                "add": "api/testimonials/addtestimonials ---> create new testimonials document",
+                "update": "api/testimonials/update ---> To update testimonials",
+                "delete": "api/testimonials/delete"
+            }
+        },
+        "general_api": {
+            "upload": "api/generic/upload",
+            "getToken": "to call api's"
+        }
+    }
+}
