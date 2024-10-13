@@ -46,7 +46,6 @@ const handleImageUpload = asyncHandler(async (req, res) => {
                 error: err.message
             });
         } else if (err) {
-            console.log("🚀 ~ upload.single ~ err:", err)
             // Any other error (e.g., invalid file type)
             return res.status(400).json({
                 statusCode: 400,

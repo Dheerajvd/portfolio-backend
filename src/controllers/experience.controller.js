@@ -39,8 +39,6 @@ const handleCreateExperience = asyncHandler(async (req, res) => {
     const { startYear, jobTitle, jobLocation, jobCompany, jobDescription } = req.body;
     const username = req.user.username;
 
-    console.log(startYear, jobCompany, jobTitle, jobLocation, jobDescription, username);
-
     if (!startYear || !jobTitle || !jobLocation || !jobDescription || !jobCompany || !username) {
         return res.status(400).json({
             statusCode: 400,

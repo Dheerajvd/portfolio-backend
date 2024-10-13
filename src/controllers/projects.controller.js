@@ -19,7 +19,6 @@ const handleGetProjects = asyncHandler(async (req, res) => {
     if (projectDetails.length) {
         let projectsResp = []
         projectDetails.forEach((proj) => {
-            console.log("🚀 ~ projectDetails.forEach ~ proj:", proj)
             const project = {
                 id: proj._id,
                 title: proj.title,
