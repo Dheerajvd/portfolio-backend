@@ -7,9 +7,9 @@ const cors = require("cors");
 const configurationVariables = require('./src/config/env.config');
 
 app.use(cors({
-    origin: '*', // Allow all origins (consider limiting this in production)
-    methods: ['GET', 'POST'], // Allow specific methods
-    allowedHeaders: ['Content-Type', 'Authorization', 'api_key', 'api_password'] // Allow specific headers
+    origin: '*',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'api_key', 'api_password']
 }));
 
 // db connection
@@ -23,6 +23,7 @@ app.use(errorHandler);
 
 // Routes
 app.use("/api/landing", require("./src/routes/landing.routes"));
+app.use("/api/skills", require("./src/routes/skills.routes"));
 app.use("/api/common", require("./src/routes/common.routes"));
 
 const PORT = configurationVariables.PORT || 3000;

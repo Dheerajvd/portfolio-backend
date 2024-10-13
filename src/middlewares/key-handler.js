@@ -6,7 +6,7 @@ const keyManager = asyncHandler(async (req, res, next) => {
     let api_password = req.headers.api_password;
     if (api_key && api_password) {
         if (api_key !== configurationVariables.API_KEY) {
-            res.status(401).json({
+            return res.status(401).json({
                 statusCode: 401,
                 statusMessage: "Api key is invalid"
             });
@@ -17,7 +17,7 @@ const keyManager = asyncHandler(async (req, res, next) => {
             req.accessGranted = 'write';
             next()
         } else {
-            res.status(500).json({
+            return res.status(500).json({
                 statusCode: 500,
                 statusMessage: "Internal server error"
             });
@@ -25,7 +25,7 @@ const keyManager = asyncHandler(async (req, res, next) => {
     }
 
     if (!api_key || !api_password) {
-        res.status(401).json({
+        return res.status(401).json({
             statusCode: 401,
             statusMessage: "Api key or password is missing"
         });

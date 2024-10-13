@@ -21,7 +21,7 @@ const validateToken = asyncHandler(async (req, res, next) => {
     }
 
     if (!token) {
-        res.status(401).json({
+        return res.status(401).json({
             statusCode: 401,
             statusMessage: "Token is missing"
         });

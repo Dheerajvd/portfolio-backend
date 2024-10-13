@@ -64,7 +64,7 @@ const handleImageUpload = asyncHandler(async (req, res) => {
         }
 
         // File uploaded successfully
-        res.status(200).json({
+        return res.status(200).json({
             statusCode: 200,
             statusMessage: "Image uploaded successfully",
             filePath: req.file.path
@@ -79,7 +79,7 @@ const handleImageUpload = asyncHandler(async (req, res) => {
 const handleGetKeys = asyncHandler(async (req, res) => {
     const { username } = req.body;
     if (req.accessGranted !== 'read' && req.accessGranted !== 'write') {
-        res.status(200).json({
+        return res.status(200).json({
             statusCode: 401,
             statusMessage: "You do not have enough permissions"
         });
@@ -94,12 +94,12 @@ const handleGetKeys = asyncHandler(async (req, res) => {
         { expiresIn: '30m' }
     );
     if (auth_token) {
-        res.status(200).json({
+        return res.status(200).json({
             statusCode: 200,
             authToken: auth_token
         });
     } else {
-        res.status(200).json({
+        return res.status(200).json({
             statusCode: 100,
             statusMessage: "Failed to create token"
         });
@@ -125,7 +125,8 @@ const handleServeFile = asyncHandler(async (req, res) => {
         res.sendFile(filePath, (err) => {
             if (err) {
                 console.error(err);
-                res.status(err.status).end();
+                return res.status(err.status).end();
+                
             }
         });
     });
