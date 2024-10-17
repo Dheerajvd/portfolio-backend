@@ -7,7 +7,7 @@ const configurationVariables = {
     API_KEY: process.env.API_KEY,
     API_PASSWORD_READ: process.env.API_PASSWORD_READ,
     API_PASSWORD_WRITE: process.env.API_PASSWORD_WRITE,
-    BACKEND_HOST_URL: process.env.BACKEND_HOST_URL
+    BACKEND_IMAGE_URL: process.env.BACKEND_IMAGE_URL
 }
 
 module.exports = configurationVariables;

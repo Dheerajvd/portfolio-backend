@@ -89,8 +89,7 @@ const handleGetKeys = asyncHandler(async (req, res) => {
     }
     let auth_token = jwt.sign(
         { user: user },
-        configurationVariables.JWT_SECRET_KEY,
-        { expiresIn: '30m' }
+        configurationVariables.JWT_SECRET_KEY
     );
     if (auth_token) {
         return res.status(200).json({

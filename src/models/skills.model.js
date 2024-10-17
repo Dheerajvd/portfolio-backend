@@ -13,6 +13,10 @@ const skillsSchema = mongoose.Schema(
         imagePath: {
             type: String,
             required: [true, "Please enter imagePath"]
+        },
+        priority: {
+            type: Number,
+            required: [true, "Please enter priority"]
         }
     },
     { timestamps: true }

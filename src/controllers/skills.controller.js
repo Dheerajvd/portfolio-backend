@@ -22,7 +22,8 @@ const handleGetSkills = asyncHandler(async (req, res) => {
             const skill = {
                 id: indSkill._id,
                 title: indSkill.title,
-                imagePath: `${configurationVariables.BACKEND_HOST_URL}file/skills/${indSkill.imagePath}`
+                imagePath: `${configurationVariables.BACKEND_IMAGE_URL}file/${indSkill.imagePath}`,
+                priority: indSkill.priority ? indSkill.priority : 0,
             };
 
             skillsResp.push(skill);
@@ -48,9 +49,9 @@ const handleGetSkills = asyncHandler(async (req, res) => {
 // @access: Private
 // @request-body: {title: "skill name", "imagePath"}
 const handleCreateSkills = asyncHandler(async (req, res) => {
-    const { title, imagePath } = req.body;
+    const { title, imagePath, priority } = req.body;
     const username = req.user.username
-    if (!title || !imagePath || !username) {
+    if (!title || !imagePath || !username || !priority) {
         res.status(400).json({
             statusCode: 400,
             statusMessage: "Bad Request"
@@ -79,7 +80,8 @@ const handleCreateSkills = asyncHandler(async (req, res) => {
         const skillData = await Skill.create({
             username,
             title,
-            imagePath
+            imagePath,
+            priority
         });
 
         if (skillData) {
@@ -87,6 +89,7 @@ const handleCreateSkills = asyncHandler(async (req, res) => {
                 username: skillData.username,
                 title: skillData.title,
                 imagePath: skillData.imagePath,
+                priority: skillData.priority,
                 id: skillData._id
             };
 
@@ -112,9 +115,9 @@ const handleCreateSkills = asyncHandler(async (req, res) => {
 // @request-body: {title: "skill name", "imagePath"}
 const updateSkillDetails = asyncHandler(async (req, res) => {
     let id = req.params.id;
-    const { title, imagePath } = req.body;
+    const { title, imagePath, priority } = req.body;
     const username = req.user.username
-    if (!title || !imagePath || !username, !id) {
+    if (!title || !imagePath || !username || !priority || !id) {
         res.status(400).json({
             statusCode: 400,
             statusMessage: "Bad Request"

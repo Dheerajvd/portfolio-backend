@@ -28,7 +28,7 @@ const handleGetProjects = asyncHandler(async (req, res) => {
                 techStack: proj.techStack,
                 relatedTo: proj.relatedTo,
                 projLink: proj.projLink,
-                imagePath: `${configurationVariables.BACKEND_HOST_URL}file/${proj.imagePath}`
+                imagePath: `${configurationVariables.BACKEND_IMAGE_URL}file/${proj.imagePath}`
             };
 
             projectsResp.push(project);
