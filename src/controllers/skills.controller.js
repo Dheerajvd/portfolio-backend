@@ -22,7 +22,7 @@ const handleGetSkills = asyncHandler(async (req, res) => {
             const skill = {
                 id: indSkill._id,
                 title: indSkill.title,
-                imagePath: `${configurationVariables.BACKEND_HOST_URL}file/${indSkill.imagePath}`
+                imagePath: `${configurationVariables.BACKEND_HOST_URL}file/skills/${indSkill.imagePath}`
             };
 
             skillsResp.push(skill);
