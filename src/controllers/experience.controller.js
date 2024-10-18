@@ -14,7 +14,7 @@ const handleGetExperiencess = asyncHandler(async (req, res) => {
         });
         return;
     }
-    let expDetails = await Experience.find({ username })
+    let expDetails = await Experience.find({ username }).sort({ createdAt: -1 });
     if (expDetails.length) {
         res.status(200).json({
             statusCode: 200,

@@ -14,8 +14,8 @@ const handleGetProjects = asyncHandler(async (req, res) => {
             statusMessage: "You do not have enough permissions"
         });
     }
-    
-    const projectDetails = await Project.find({ username });
+
+    const projectDetails = await Project.find({ username }).sort({priority: 1});
     if (projectDetails.length) {
         let projectsResp = []
         projectDetails.forEach((proj) => {
@@ -28,12 +28,13 @@ const handleGetProjects = asyncHandler(async (req, res) => {
                 techStack: proj.techStack,
                 relatedTo: proj.relatedTo,
                 projLink: proj.projLink,
+                priority: proj.priority,
                 imagePath: `${configurationVariables.BACKEND_IMAGE_URL}file/${proj.imagePath}`
             };
 
             projectsResp.push(project);
         })
-        
+
         res.status(200).json({
             statusCode: 200,
             projects: projectsResp
@@ -51,9 +52,9 @@ const handleGetProjects = asyncHandler(async (req, res) => {
 // @method: POST
 // @access: Private
 const handleCreateProject = asyncHandler(async (req, res) => {
-    const { title, description, imgSrc, category, descriptions, techStack, relatedTo ,projLink } = req.body;
+    const { title, description, imgSrc, category, descriptions, techStack, relatedTo, projLink, priority } = req.body;
     const username = req.user.username;
-    if (!title || !description || !imgSrc || !category || !descriptions || !techStack || !relatedTo ||!projLink || !username) {
+    if (!title || !description || !imgSrc || !category || !descriptions || !techStack || !relatedTo || !projLink || !username || !priority) {
         return res.status(400).json({
             statusCode: 400,
             statusMessage: "Bad Request: Missing required fields"
@@ -78,7 +79,8 @@ const handleCreateProject = asyncHandler(async (req, res) => {
         descriptions: projectDescriptionObjects,
         techStack,
         relatedTo,
-        projLink
+        projLink,
+        priority
     });
 
     if (projectData) {
@@ -92,6 +94,7 @@ const handleCreateProject = asyncHandler(async (req, res) => {
             techStack: projectData.techStack,
             relatedTo: projectData.relatedTo,
             projLink: projectData.projLink,
+            priority: projectData.priority,
             id: projectData._id
         };
 
@@ -113,10 +116,10 @@ const handleCreateProject = asyncHandler(async (req, res) => {
 // @access: Private
 const updateProjectDetails = asyncHandler(async (req, res) => {
     const id = req.params.id;
-    const { title, description, imgSrc, category, descriptions, techStack, projLink, relatedTo } = req.body;
+    const { title, description, imgSrc, category, descriptions, techStack, projLink, relatedTo, priority } = req.body;
     const username = req.user.username;
 
-    if (!title || !description || !imgSrc || !category || !descriptions || !techStack || !relatedTo || !projLink || !username || !id) {
+    if (!title || !description || !imgSrc || !category || !descriptions || !techStack || !relatedTo || !projLink || !username || !id || !priority) {
         return res.status(400).json({
             statusCode: 400,
             statusMessage: "Bad Request: Missing required fields"
@@ -143,7 +146,8 @@ const updateProjectDetails = asyncHandler(async (req, res) => {
             descriptions: projectDescriptionObjects,
             techStack,
             relatedTo,
-            projLink
+            projLink,
+            priority
         };
 
         // Update the project document

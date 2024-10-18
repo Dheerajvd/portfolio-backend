@@ -32,6 +32,10 @@ const projectSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    priority: {
+        type: Number,
+        required: true
+    },
     techStack: {
         type: [String],
         required: true
