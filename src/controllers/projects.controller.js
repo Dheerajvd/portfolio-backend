@@ -15,7 +15,7 @@ const handleGetProjects = asyncHandler(async (req, res) => {
         });
     }
 
-    const projectDetails = await Project.find({ username }).sort({priority: 1});
+    const projectDetails = await Project.find({ username }).sort({ priority: 1 });
     if (projectDetails.length) {
         let projectsResp = []
         projectDetails.forEach((proj) => {
@@ -165,8 +165,52 @@ const updateProjectDetails = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc: Get Project Details by ID
+// @endpoint: api/projects/getDetails/:id
+// @method: GET
+// @access: Private
+const handleGetProjectById = asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const username = req.user.username;
+
+    if (req.accessGranted !== 'read' && req.accessGranted !== 'write') {
+        return res.status(401).json({
+            statusCode: 401,
+            statusMessage: "You do not have enough permissions"
+        });
+    }
+
+    const project = await Project.findOne({ _id: id, username });
+
+    if (project) {
+        const projectResp = {
+            id: project._id,
+            title: project.title,
+            description: project.description,
+            category: project.category,
+            descriptions: project.descriptions,
+            techStack: project.techStack,
+            relatedTo: project.relatedTo,
+            projLink: project.projLink,
+            priority: project.priority,
+            imagePath: `${configurationVariables.BACKEND_IMAGE_URL}file/${project.imagePath}`
+        };
+
+        return res.status(200).json({
+            statusCode: 200,
+            project: projectResp
+        });
+    } else {
+        return res.status(404).json({
+            statusCode: 404,
+            statusMessage: "No project found with the given ID"
+        });
+    }
+});
+
 module.exports = {
     handleGetProjects,
     handleCreateProject,
-    updateProjectDetails
+    updateProjectDetails,
+    handleGetProjectById
 };
